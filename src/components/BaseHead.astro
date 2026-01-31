@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import { SITE, SOCIAL } from '../consts';
+import CalEmbed from './CalEmbed.astro';
 
 interface Props {
   title: string;
@@ -113,3 +114,5 @@ const articleSchema = type === 'article' && publishedDate ? {
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+<CalEmbed />

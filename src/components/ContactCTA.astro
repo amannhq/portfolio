@@ -1,6 +1,4 @@
 ---
-import { SOCIAL } from '../consts';
-
 interface Props {
   title?: string;
   description?: string;
@@ -19,12 +17,16 @@ const {
         <h2 class="m-0 mb-2 text-lg font-medium">{title}</h2>
         <p class="m-0 text-sm text-[--color-text-secondary]">{description}</p>
       </div>
-      <a href={`mailto:${SOCIAL.email}`} class="btn-primary shrink-0">
-        Send an email
+      <button
+        data-cal-link="amanhq/15min"
+        data-cal-namespace="15min"
+        class="btn-primary shrink-0"
+      >
+        Book a call
         <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
           <path d="M5 12h14M12 5l7 7-7 7"/>
         </svg>
-      </a>
+      </button>
     </div>
   </div>
 </section>
