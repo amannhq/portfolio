@@ -29,6 +29,12 @@
   --radius-lg: 14px;
 }
 
+/* Prevent transition jitter during theme toggle */
+.disable-transitions,
+.disable-transitions * {
+  transition: none !important;
+}
+
 @layer base {
   :root {
     color-scheme: dark;

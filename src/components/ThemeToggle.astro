@@ -35,10 +35,19 @@
 		const html = document.documentElement;
 		
 		toggle?.addEventListener('click', () => {
+			// Disable transitions
+			html.classList.add('disable-transitions');
+			
 			const current = html.getAttribute('data-theme');
 			const next = current === 'light' ? 'dark' : 'light';
 			html.setAttribute('data-theme', next);
 			localStorage.setItem('theme', next);
+			
+			// Force reflow
+			window.getComputedStyle(html).opacity;
+			
+			// Re-enable transitions
+			html.classList.remove('disable-transitions');
 		});
 	}
 
