@@ -1,0 +1,88 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+	title: string;
+	description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={title} description={description} />
+	</head>
+	<body class="flex min-h-screen flex-col">
+		<Header />
+		<main class="flex-1">
+			<slot />
+		</main>
+		<Footer />
+		<script is:inline define:vars={{ pageTitle: title }}>
+			(function() {
+				const baseTitle = pageTitle;
+				const phrases = [
+					baseTitle,
+					'building...',
+					'shipping code',
+					'> _',
+					baseTitle
+				];
+				let currentIndex = 0;
+				let charIndex = 0;
+				let isDeleting = false;
+				let timeout;
+
+				function typeTitle() {
+					const current = phrases[currentIndex];
+					
+					if (isDeleting) {
+						document.title = current.substring(0, charIndex - 1);
+						charIndex--;
+					} else {
+						document.title = current.substring(0, charIndex + 1);
+						charIndex++;
+					}
+
+					let delay = isDeleting ? 50 : 100;
+
+					if (!isDeleting && charIndex === current.length) {
+						delay = currentIndex === phrases.length - 1 ? 10000 : 2000;
+						isDeleting = true;
+					} else if (isDeleting && charIndex === 0) {
+						isDeleting = false;
+						currentIndex = (currentIndex + 1) % phrases.length;
+						delay = 500;
+					}
+
+					timeout = setTimeout(typeTitle, delay);
+				}
+
+				function startTyping() {
+					if (document.visibilityState === 'visible') {
+						clearTimeout(timeout);
+						currentIndex = 0;
+						charIndex = 0;
+						isDeleting = false;
+						typeTitle();
+					}
+				}
+
+				document.addEventListener('visibilitychange', () => {
+					if (document.visibilityState === 'hidden') {
+						clearTimeout(timeout);
+						document.title = 'come back :)';
+					} else {
+						startTyping();
+					}
+				});
+
+				startTyping();
+			})();
+		</script>
+	</body>
+</html>

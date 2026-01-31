@@ -1,0 +1,45 @@
+---
+title: 'building this site'
+description: 'lessons from building a minimal portfolio with astro and mdx'
+pubDate: 'Jan 20 2026'
+---
+
+just shipped this portfolio site. here's what i learned along the way. ⚡
+
+## design decisions
+
+i wanted something that felt like a terminal but wasn't cosplaying as one. the key was:
+
+- **monospace font everywhere** — geist mono is beautiful
+- **limited color palette** — mostly grays, orange for emphasis
+- **no images** — text-first, content-focused
+- **generous whitespace** — let things breathe
+
+## astro is great
+
+if you're building a content-heavy site, astro is probably the right choice:
+
+```bash
+npm create astro@latest
+```
+
+what i love:
+
+- zero javascript by default
+- mdx support out of the box
+- fast builds
+- simple mental model
+
+## what's next
+
+some things i want to add:
+
+1. **dark mode** — respect system preferences ✅
+2. **rss feed** — for the few who still use readers
+3. **search** — once there's enough content
+
+but for now, shipping beats perfecting.
+
+---
+
+*built with astro, deployed on vercel, written in markdown*

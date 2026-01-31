@@ -1,0 +1,28 @@
+---
+import type { Experience } from '../data/types';
+
+interface Props {
+  items: Experience[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="timeline animate-fade-in" style="animation-delay: 0.8s;">
+  {items.map((job, i) => (
+    <div class="timeline-item">
+      <div class="timeline-node">
+        <span class:list={['timeline-dot', { active: job.current }]}></span>
+        {i < items.length - 1 && <span class="timeline-line"></span>}
+      </div>
+      <div class="timeline-content">
+        <span class="text-xs text-[--color-text-tertiary]">{job.period}</span>
+        <div class="flex flex-wrap items-baseline gap-x-2">
+          <span class="text-[--color-text]">{job.role}</span>
+          <span class="text-[--color-text-tertiary]">·</span>
+          <span class="text-[--color-text-secondary]">{job.company}</span>
+        </div>
+      </div>
+    </div>
+  ))}
+</div>

@@ -1,0 +1,27 @@
+---
+interface Props {
+  label: string;
+  title: string;
+  viewAllHref?: string;
+  viewAllText?: string;
+}
+
+const { label, title, viewAllHref, viewAllText = 'View all' } = Astro.props;
+---
+
+<div class="mb-6 flex items-end justify-between">
+  <div>
+    <p class="section-label mb-1">{label}</p>
+    <h2 class="m-0 text-xl font-medium tracking-tight">{title}</h2>
+  </div>
+  {viewAllHref && (
+    <a
+      href={viewAllHref}
+      target={viewAllHref.startsWith('http') ? '_blank' : undefined}
+      rel={viewAllHref.startsWith('http') ? 'noopener noreferrer' : undefined}
+      class="link-arrow link-glow"
+    >
+      {viewAllText} <span>→</span>
+    </a>
+  )}
+</div>
